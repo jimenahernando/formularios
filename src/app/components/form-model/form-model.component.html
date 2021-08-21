@@ -30,7 +30,8 @@
         <div class="my-2">
             <label for="dni">DNI</label>
             <input type="text" class="form-control" id="dni" formControlName="dni">
-            <p class="error" *ngIf="checkControl('dni', 'dniValidator')">El formato de DNI no es correcto</p>
+            <!-- <p class="error" *ngIf="checkControl('dni', 'dniValidator')"></p> -->
+            <p class="error" *ngIf="checkControl('dni', 'dniValidatorJuan')">{{formulario.get('dni')?.errors?.dniValidatorJuan}}</p>
         </div>
         <div class="my-2">
             <label for="password">Password</label>

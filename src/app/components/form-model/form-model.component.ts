@@ -31,7 +31,8 @@ export class FormModelComponent implements OnInit {
         Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
       ]),
       dni: new FormControl('',[
-        this.dniValidator
+        // this.dniValidator,
+        this.dniValidatorJuan
       ]),
       password: new FormControl(),
       repitePassword: new FormControl()
@@ -72,7 +73,7 @@ export class FormModelComponent implements OnInit {
     const dniRex = /^\d{8}[a-zA-Z]$/;
 
     if(!dniRex.test(value)){
-      return { dniValidator: { codigo }}
+      return { dniValidator: 'El formato es incorrecto'};
     }
 
     const parteNumerica = value.slice(0, 8);
@@ -81,10 +82,34 @@ export class FormModelComponent implements OnInit {
     const posicionLetra = parseInt(parteNumerica) % 23;
     const letraValida = codigo.slice(posicionLetra, posicionLetra + 1);
 
-    if (letra === letraValida) {
+    if (letra.toUpperCase() === letraValida) {
       return null;
     }else {
-      return { dniValidator: { codigo }}
+      return { dniValidator: 'La letra no es valida'};
+    }
+  }
+
+  // RESOLUCION HECHA POR JUAN
+  dniValidatorJuan(control: AbstractControl){
+    const dni = control.value;
+    const conjLetras = "TRWAGMYFPDXBNJZSQVHLCKE";
+    const expDni = /^\d{8}[a-zA-Z]$/
+
+    if(expDni.test(dni)){
+      const numero = dni.substr(0, dni.length -1); 
+      const letra = dni.substr(dni.length-1, 1); 
+      const calculo = numero % 23;
+
+      
+      console.log(letra.toUpperCase());
+      console.log(conjLetras.split('')[calculo])
+      if (letra.toUpperCase() !== conjLetras.split('')[calculo]){
+        return { dniValidatorJuan: 'La letra no es valida' };
+      } else {
+        return null;
+      }
+    } else {
+      return { dniValidatorJuan: 'El formato es incorrecto' };
     }
   }
 
