@@ -1,0 +1,13 @@
+/* es invalido y fue tocado */
+input.ng-invalid.ng-touched{
+    border: 1px solid tomato;
+}
+
+/* es valido y nunca fue tocado */
+input .ng-valid.ng-untoched{
+    border: 1px solid seagreen;
+}
+
+.error{
+    color: tomato;
+}

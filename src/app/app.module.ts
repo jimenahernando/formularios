@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormTemplateComponent } from './components/form-template/form-template.component';
+import { FormModelComponent } from './components/form-model/form-model.component';
+
+// para trabajar con formularios de tipo template
+import { FormsModule } from '@angular/forms';
+
+// para trabajar con formularios de tipo model
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormTemplateComponent
+    FormTemplateComponent,
+    FormModelComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
